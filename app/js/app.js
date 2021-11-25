@@ -945,7 +945,7 @@ module.exports.overWS = StompNode.overWS;
 
   wrapWS = function(url) {
     var WebSocketClient, connection, socket, ws;
-    WebSocketClient = __webpack_require__(/*! websocket */ "./node_modules/websocket/lib/browser.js").client;
+    WebSocketClient = (__webpack_require__(/*! websocket */ "./node_modules/websocket/lib/browser.js").client);
     connection = null;
     ws = {
       url: url,
@@ -1730,12 +1730,12 @@ Rabbit.init = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regene
           client = Stomp.over(ws);
           client.heartbeat.outgoing = 4000;
           client.heartbeat.incoming = 4000;
+          client.reconnect_delay = 5000;
           client.debug = null;
-          client.reconnectDelay = 5000;
           client.connect('guest', 'guest', function (x) {
             client.subscribe('/exchange/' + Rabbit.token, Rabbit.messageHandler);
           }, function () {
-            console.log('Error connecting to STOMP server');
+            console.log('Error connecting to STOMP server, the exchange may not have been created');
           }, '/');
           console.log('Rabbit has been initialized');
 

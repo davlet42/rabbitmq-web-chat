@@ -6,6 +6,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Exception\AMQPProtocolConnectionException;
+use PhpAmqpLib\Exception\AMQPIOException;
 
 class Rabbit
 {
@@ -27,6 +28,8 @@ class Rabbit
             $this->connection = new AMQPStreamConnection(self::CFG_RABBIT_HOST, self::CFG_RABBIT_PORT, self::CFG_RABBIT_USER, self::CFG_RABBIT_PASSWORD);
             $this->channel = $this->connection->channel();
         } catch (AMQPProtocolConnectionException $e) {
+            //echo $e->getMessage();
+        }  catch (AMQPIOException $e) {
             //echo $e->getMessage();
         }
     }
