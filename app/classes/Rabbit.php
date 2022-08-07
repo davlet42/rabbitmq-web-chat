@@ -10,7 +10,7 @@ use PhpAmqpLib\Exception\AMQPIOException;
 
 class Rabbit
 {
-    private const CFG_RABBIT_HOST = 'localhost';
+    private const CFG_RABBIT_HOST = 'rabbitmq'; //or localhost
 
     private const CFG_RABBIT_PORT = 5672;
 
